@@ -1,3 +1,4 @@
+<lib-search (searchTextChange)="onSearch($event)"></lib-search>
 <div *ngIf="isLoadingResults">Loading...</div>
-<lib-people-grid *ngIf="peopleOnCurrentPage" [people]="peopleOnCurrentPage"></lib-people-grid>
+<lib-people-grid *ngIf="peopleOnCurrentPage" [people]="peopleOnCurrentPage | nameSearch : searchText"></lib-people-grid>
 <lib-pagination [pages]="5" [current]="currentPage" (change)="onPageChange($event)"></lib-pagination>

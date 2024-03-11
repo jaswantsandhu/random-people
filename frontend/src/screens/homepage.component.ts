@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PaginationComponent, PeopleGridComponent } from 'components/src';
+import { PaginationComponent, PeopleGridComponent, SearchComponent } from 'components/src';
 import { SearchService } from "@random/services"
 import { SearchResponse } from '@random/models';
 import { Subject, takeUntil } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { NameSearchPipe } from '../pipes/namesearch.pipe';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
-  imports: [CommonModule, PeopleGridComponent, PaginationComponent],
+  imports: [CommonModule, PeopleGridComponent, PaginationComponent, SearchComponent, NameSearchPipe],
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css'],
 })
@@ -16,6 +18,7 @@ export class HomepageComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject<void>();
   people: Map<number, SearchResponse["results"]> = new Map();
   currentPage: number = 1;
+  searchText: string = "";
   isLoadingResults: boolean = false;
 
   constructor(private searchService: SearchService) { }
@@ -49,6 +52,10 @@ export class HomepageComponent implements OnInit, OnDestroy {
     if (!this.people.has(this.currentPage)) {
       this.getPeopleResults();
     }
+  }
+
+  onSearch(search: string) {
+    this.searchText = search;
   }
 
   get peopleOnCurrentPage() {
