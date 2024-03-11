@@ -11,6 +11,6 @@ import { SearchResponse } from "@random/models"
 })
 export class PeopleGridComponent {
 
-  @Input() people: null | SearchResponse = null;
+  @Input() people: SearchResponse["results"]  = [];
 
 }

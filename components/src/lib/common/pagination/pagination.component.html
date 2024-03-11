@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center space-x-1 my-8">
+    <button type="button" (click)="onChange('prev')"
+        class="flex items-center px-4 py-2 text-gray-500 bg-white rounded-md border border-gray-300 hover:bg-gray-100">
+        Previous
+    </button>
+
+    <button *ngFor="let page of totalPages" (click)="onChange(page)" type="button"
+        class="px-4 py-2 text-gray-700 bg-white rounded-md border border-gray-300 hover:bg-gray-100">{{page}}</button>
+
+    <button type="button" (click)="onChange('next')"
+        class="flex items-center px-4 py-2 text-gray-500 bg-white rounded-md border border-gray-300 hover:bg-gray-100">
+        Next
+    </button>
+</div>

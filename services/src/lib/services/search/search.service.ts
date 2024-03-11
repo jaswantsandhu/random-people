@@ -9,7 +9,7 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  get() {
-    return this.http.get<SearchResponse>("https://randomuser.me/api/?results=20&page=1")
+  get(results: number = 20, page: number = 1) {
+    return this.http.get<SearchResponse>(`https://randomuser.me/api/?results=${results}&page=${page}`)
   }
 }
