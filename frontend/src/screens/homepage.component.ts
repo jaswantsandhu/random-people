@@ -1,39 +1,57 @@
-import { Component, OnInit, signal, effect } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent, PeopleGridComponent } from 'components/src';
 import { SearchService } from "@random/services"
 import { SearchResponse } from '@random/models';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
   standalone: true,
   imports: [CommonModule, PeopleGridComponent, PaginationComponent],
   templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.css',
+  styleUrls: ['./homepage.component.css'],
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
+  people: Map<number, SearchResponse["results"]> = new Map();
+  currentPage: number = 1;
+  isLoadingResults: boolean = false;
 
-  people = signal<SearchResponse["results"]>([]);
-  currentPage = signal<number>(1)
-
-  constructor(private _SearchService: SearchService) {
-    effect(() => {
-      this.getPeopleResults();
-    })
-  }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
     this.getPeopleResults();
   }
 
-  getPeopleResults() {
-    this._SearchService.get(30, this.currentPage()).subscribe((response) => {
-      this.people.update(() => { return response.results })
-    })
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
-  onPageChange(page: number) {
-    this.currentPage.set(page);
+  getPeopleResults(): void {
+    this.isLoadingResults = true;
+    this.searchService.get(30, this.currentPage)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (response) => {
+          this.people.set(this.currentPage, response.results);
+          this.isLoadingResults = false;
+        },
+        error: () => {
+          this.isLoadingResults = false;
+        }
+      });
   }
 
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    if (!this.people.has(this.currentPage)) {
+      this.getPeopleResults();
+    }
+  }
+
+  get peopleOnCurrentPage() {
+    return this.people.get(this.currentPage);
+  }
 }
