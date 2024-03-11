@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SearchResponse } from "@random/models"
 
 @Component({
   selector: 'lib-people-grid',
@@ -8,4 +9,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './people-grid.component.html',
   styleUrl: './people-grid.component.css',
 })
-export class PeopleGridComponent {}
+export class PeopleGridComponent {
+
+  @Input() people: null | SearchResponse = null;
+
+}

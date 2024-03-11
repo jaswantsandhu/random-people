@@ -7,7 +7,15 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@random/services": [
+        "./services/src/"
+      ],
+      "@random/models": [
+        "./services/src/lib/models"
+      ]
+    }
   },
   "files": [],
   "include": [],
