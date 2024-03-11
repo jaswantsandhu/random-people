@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ApiServicesComponent } from './api-services.component';
+import { FooterComponent } from './footer.component';
 
-describe('ApiServicesComponent', () => {
-  let component: ApiServicesComponent;
-  let fixture: ComponentFixture<ApiServicesComponent>;
+describe('FooterComponent', () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ApiServicesComponent],
+      imports: [FooterComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ApiServicesComponent);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

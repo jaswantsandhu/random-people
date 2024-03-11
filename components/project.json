@@ -5,5 +5,23 @@
   "prefix": "lib",
   "tags": [],
   "projectType": "library",
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "components/ng-package.json",
+        "tailwindConfig": "components/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "components/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "components/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
 }

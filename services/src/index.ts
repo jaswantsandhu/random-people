@@ -1,1 +1,1 @@
-export * from './lib/api-services/api-services.component';
+export * from './lib/services/search/search.service';

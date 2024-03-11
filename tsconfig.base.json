@@ -14,10 +14,6 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "api-services": ["services/src/index.ts"],
-      "components": ["components/src/index.ts"]
-    }
   },
   "exclude": ["node_modules", "tmp"]
 }
