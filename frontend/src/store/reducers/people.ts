@@ -22,7 +22,6 @@ export const peopleReducer = createReducer(
     currentPage: page,
   })),
   on(PeopleActions.loadPeopleNoAction, (state) => {
-    console.log("no action")
     return { ...state, isLoading: false };
   }),
   on(PeopleActions.loadPeopleSuccess, (state, { people, page }) => {

@@ -22,7 +22,7 @@ export class PeopleEffects {
     mergeMap(([action, peopleFeature]) => {
       const pageData = peopleFeature.people.get(action.page);
       if (pageData) {
-        return of(PeopleActions.loadPeopleNoAction);
+        return of(PeopleActions.loadPeopleNoAction());
       } else {
         return this.searchService.get(30, action.page).pipe(
           map(data => PeopleActions.loadPeopleSuccess({ people: data.results, page: action.page })),
