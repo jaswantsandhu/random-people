@@ -13,13 +13,13 @@ export const selectIsLoading = createSelector(
   (state) => state.isLoading
 );
 
-
 export const currentPage = createSelector(
   selectPeopleFeature,
   (state) => state.currentPage
 );
 
-export const selectPeopleDataForPage = (page: any) => createSelector(
-  selectPeopleFeature,
-  state => state.people.get(page)
-);
+export const selectPeopleDataForPage = (page: any) =>
+  createSelector(selectPeopleFeature, (state) => state.people.get(page));
+
+export const selectedPersonById = () =>
+  createSelector(selectPeopleFeature, (state) => state.selectedPerson);

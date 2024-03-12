@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent, PeopleGridComponent, SearchComponent } from 'components/src';
 import { SearchResult } from '@random/models';
 import { Observable } from 'rxjs';
 import { NameSearchPipe } from '../../pipes/namesearch.pipe';
-import { Store, State, StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { currentPage, selectCurrentPagePeople, selectIsLoading } from 'frontend/src/store/selectors/people';
 import { loadPeople } from "../../store/actions/people"
 @Component({
