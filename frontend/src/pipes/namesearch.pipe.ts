@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Result } from '@random/models'; // Adjust the import path as necessary
+import { SearchResult } from '@random/models'; // Adjust the import path as necessary
 
 @Pipe({
   name: 'nameSearch',
@@ -7,7 +7,7 @@ import { Result } from '@random/models'; // Adjust the import path as necessary
 })
 export class NameSearchPipe implements PipeTransform {
 
-  transform(items: Result[], searchText: string): Result[] {
+  transform(items: SearchResult[] | null, searchText: string): SearchResult[] {
     if (!items) {
       return [];
     }

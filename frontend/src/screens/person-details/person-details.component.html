@@ -1,0 +1,12 @@
+<div *ngIf="person" class="container mx-auto p-4">
+    <div class="bg-white shadow rounded-lg p-6">
+      <div class="flex items-center space-x-6 mb-4">
+        <img class="h-24 w-24 rounded-full" [src]="person.picture.large" alt="{{ person.name.first }} {{ person.name.last }}">
+        <div>
+          <p class="text-xl text-gray-700 font-bold">{{ person.name.title }} {{ person.name.first }} {{ person.name.last }}</p>
+          <p class="text-gray-600">Email: {{ person.email }}</p>
+          <p class="text-gray-600">Location: {{ person.location.city }}, {{ person.location.country }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,5 +1,5 @@
 export interface SearchResponse {
-    results: Result[];
+    results: SearchResult[];
     info:    Info;
 }
 
@@ -10,7 +10,7 @@ export interface Info {
     version: string;
 }
 
-export interface Result {
+export interface SearchResult {
     gender:     Gender;
     name:       Name;
     location:   Location;

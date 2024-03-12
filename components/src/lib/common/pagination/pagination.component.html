@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center space-x-1 my-8">
+<div *ngIf="!!current" class="flex justify-center items-center space-x-1 my-8">
     <button type="button" (click)="onChange('prev')" [ngClass]="{ 'bg-gray-200' : current === 1 }"
         [disabled]="current === 1"
         class="flex items-center px-4 py-2 text-gray-500 rounded-md border border-gray-300 hover:bg-gray-100">

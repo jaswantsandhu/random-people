@@ -1,0 +1,4 @@
+<lib-search (searchTextChange)="onSearch($event)"></lib-search>
+<div *ngIf="isLoading$ | async">Loading...</div>
+<lib-people-grid [people]="(people$) | async | nameSearch : searchText"></lib-people-grid>
+<lib-pagination [pages]="5" [current]="currentPage$ | async" (change)="onPageChange($event)"></lib-pagination>
